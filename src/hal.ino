@@ -1,5 +1,10 @@
 #include "hal.h"
 
+uint8_t ledStatus_state = 0;
+uint8_t ledWiFi_state = 0;
+uint8_t loadA_state = 0;
+uint8_t loadB_state = 0;
+
 void initGPIO(void) {
   //Configura a GPIO como saida
   pinMode(LOAD_B, OUTPUT);
@@ -14,4 +19,34 @@ void initGPIO(void) {
   digitalWrite(LED_A, LOW);//LED
   digitalWrite(LOAD_A, LOW);//LOAD A
   digitalWrite(LED_B, LOW);//LED
+}
+
+void statusLED(uint8_t state){
+  digitalWrite(LED_A, state);
+  ledStatus_state = state;
+}
+
+void statusLED_toggle(void){
+  digitalWrite(LED_A, !ledStatus_state);
+  ledStatus_state = !ledStatus_state;
+}
+
+void wifiLED(uint8_t state){
+  digitalWrite(LED_B, state);
+  ledWiFi_state = state;
+}
+
+void wifiLED_toggle(void){
+  digitalWrite(LED_B, !ledWiFi_state);
+  ledWiFi_state = !ledWiFi_state;
+}
+
+void loadA(uint8_t state){
+  digitalWrite(LOAD_A, state);
+  loadA_state = state;
+}
+
+void loadB(uint8_t state){
+  digitalWrite(LOAD_B, state);
+  loadB_state = state;
 }

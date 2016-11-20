@@ -29,15 +29,7 @@ void setup() {
     ESP.restart();
   }
 
-  // Port defaults to 8266
-  // ArduinoOTA.setPort(8266);
-  // Hostname defaults to esp8266-[ChipID]
-  ArduinoOTA.setHostname("lhc");
-  // No authentication by default
-  // ArduinoOTA.setPassword("admin");
-  // Password can be set with it's md5 value as well
-  // MD5(admin) = 21232f297a57a5a743894a0e4a801fc3
-  // ArduinoOTA.setPasswordHash("21232f297a57a5a743894a0e4a801fc3");
+  //ArduinoOTA.setHostname("lhc");
 
   ArduinoOTA.onStart([]() {
     String type;
@@ -65,7 +57,6 @@ void setup() {
   });
 
   ArduinoOTA.begin();
-  Serial.println("Ready OTA curso IoT");
   Serial.print("IP address: ");
   Serial.println(WiFi.localIP());
   server.begin();
@@ -80,13 +71,9 @@ void webserver_handle(void){
     return;
   }
 
-  Serial.println("Nova conexao requisitada...");
-
   while(!client.available()){
     delay(1);
   }
-
-  Serial.println("Nova conexao OK...");
 
   //Le a string enviada pelo cliente
   String req = client.readStringUntil('\r');
