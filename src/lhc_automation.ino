@@ -122,5 +122,4 @@ void webserver_handle(void){
 void loop() {
   ArduinoOTA.handle();
   webserver_handle();
-  sendKeepAlive();
 }
