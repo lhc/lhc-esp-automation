@@ -26,7 +26,8 @@ uint8_t parseLHCstatus(String payload) {
 }
 
 uint8_t updateLHCstatus(void) {
-  uint8_t status = 0;
+
+  String status;
 
   HTTPClient http;
   String httpStatus = "http://lhc.net.br/spacenet.json";
@@ -45,5 +46,5 @@ uint8_t updateLHCstatus(void) {
   }
   http.end();
 
-  return status;
+  return status.toInt();
 }

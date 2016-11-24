@@ -21,6 +21,15 @@ void initGPIO(void) {
   digitalWrite(LED_B, LOW);//LED
 }
 
+void updateStatus(void){
+    updateGPIOstate(loadA_state ,loadB_state);
+}
+
+void restoreLoadState(void) {
+    digitalWrite(LOAD_A, getGPIOstateLoadA());//LOAD B
+    digitalWrite(LOAD_B, getGPIOstateLoadB());//LOAD B
+}
+
 void statusLED(uint8_t state){
   digitalWrite(LED_A, state);
   ledStatus_state = state;
@@ -44,9 +53,11 @@ void wifiLED_toggle(void){
 void loadA(uint8_t state){
   digitalWrite(LOAD_A, state);
   loadA_state = state;
+  updateStatus();
 }
 
 void loadB(uint8_t state){
   digitalWrite(LOAD_B, state);
   loadB_state = state;
+  updateStatus();
 }
